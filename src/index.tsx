@@ -1,5 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
-import React, { createContext, useContext, useState, useMemo, useCallback, type CSSProperties, type ReactNode } from 'react'
+import React, { useState, useMemo, useCallback, useContext, type CSSProperties, type ReactNode } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
 // ── Tokens ────────────────────────────────────────────────────────
@@ -8,19 +8,15 @@ import { darkTokens, lightTokens, type ThemeTokens } from './tokens'
 export { darkTokens, lightTokens }
 export type { DarkTokens, LightTokens, ThemeTokens } from './tokens'
 
+// ── Button ─────────────────────────────────────────────────────────
+export { Button, type ButtonVariant, type ButtonSize, type ButtonProps } from './Button'
+
+// ── Context & hooks (shared with Button) ───────────────────────────
+export { DesignSystemContext, useT, useIsDark, useToggleTheme }
+  from './context'
+import { DesignSystemContext, useT, useIsDark, useToggleTheme } from './context'
+
 // ── DesignSystemProvider ──────────────────────────────────────────
-interface DesignSystemContextValue {
-  tokens: ThemeTokens
-  isDark: boolean
-  toggleTheme: () => void
-}
-
-const DesignSystemContext = createContext<DesignSystemContextValue>({
-  tokens: darkTokens,
-  isDark: true,
-  toggleTheme: () => {},
-})
-
 export function DesignSystemProvider({ children, initialDark = true }: { children: ReactNode; initialDark?: boolean }) {
   const [isDark, setIsDark] = useState(initialDark)
   const toggleTheme = useCallback(() => setIsDark(d => !d), [])
@@ -30,26 +26,6 @@ export function DesignSystemProvider({ children, initialDark = true }: { childre
       {children}
     </DesignSystemContext.Provider>
   )
-}
-
-function useThemeCtx() {
-  return useContext(DesignSystemContext)
-}
-
-// ── Reactive token hook ──────────────────────────────────────────
-export function useT() {
-  const { tokens } = useThemeCtx()
-  return tokens
-}
-
-export function useIsDark() {
-  const { isDark } = useThemeCtx()
-  return isDark
-}
-
-export function useToggleTheme() {
-  const { toggleTheme } = useThemeCtx()
-  return toggleTheme
 }
 
 // ── Static dark tokens (backward compat) ──────────────────────────
@@ -411,7 +387,7 @@ export function Sidebar({ navGroups }: {
   navGroups: NavGroup[]
 }) {
   const { pathname } = useLocation()
-  const { tokens: T } = useThemeCtx()
+  const { tokens: T } = useContext(DesignSystemContext)
 
   function isActive(path: string) {
     if (path === '/dashboard') return pathname === '/dashboard'
