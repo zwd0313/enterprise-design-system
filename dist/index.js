@@ -1,35 +1,20 @@
 /* eslint-disable react-refresh/only-export-components */
-import React, { createContext, useContext, useState, useMemo, useCallback } from 'react';
+import React, { useState, useMemo, useCallback, useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 // ── Tokens ────────────────────────────────────────────────────────
 import { darkTokens, lightTokens } from './tokens';
 export { darkTokens, lightTokens };
-const DesignSystemContext = createContext({
-    tokens: darkTokens,
-    isDark: true,
-    toggleTheme: () => { },
-});
+// ── Button ─────────────────────────────────────────────────────────
+export { Button } from './Button';
+// ── Context & hooks (shared with Button) ───────────────────────────
+export { DesignSystemContext, useT, useIsDark, useToggleTheme } from './context';
+import { DesignSystemContext, useT } from './context';
+// ── DesignSystemProvider ──────────────────────────────────────────
 export function DesignSystemProvider({ children, initialDark = true }) {
     const [isDark, setIsDark] = useState(initialDark);
     const toggleTheme = useCallback(() => setIsDark(d => !d), []);
     const tokens = useMemo(() => isDark ? darkTokens : lightTokens, [isDark]);
     return (React.createElement(DesignSystemContext.Provider, { value: { tokens, isDark, toggleTheme } }, children));
-}
-function useThemeCtx() {
-    return useContext(DesignSystemContext);
-}
-// ── Reactive token hook ──────────────────────────────────────────
-export function useT() {
-    const { tokens } = useThemeCtx();
-    return tokens;
-}
-export function useIsDark() {
-    const { isDark } = useThemeCtx();
-    return isDark;
-}
-export function useToggleTheme() {
-    const { toggleTheme } = useThemeCtx();
-    return toggleTheme;
 }
 // ── Static dark tokens (backward compat) ──────────────────────────
 export const T = darkTokens;
@@ -294,7 +279,7 @@ export function AvatarStack({ names, max = 4 }) {
 export const surfaceBg = 'rgba(255,255,255,0.03)';
 export function Sidebar({ navGroups }) {
     const { pathname } = useLocation();
-    const { tokens: T } = useThemeCtx();
+    const { tokens: T } = useContext(DesignSystemContext);
     function isActive(path) {
         if (path === '/dashboard')
             return pathname === '/dashboard';
