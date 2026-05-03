@@ -3,7 +3,8 @@
 // Source: ~/.openclaw/workspace/design-systems/colors_and_type.css
 import React, { useState } from 'react';
 import { useT } from './context';
-export function Button({ children, variant = 'primary', size = 'default', disabled = false, onClick, style = {}, type = 'button', title, className, }) {
+export function Button({ children, variant = 'primary', size = 'default', disabled = false, onClick, style = {}, type = 'button', htmlType, title, className, icon, }) {
+    const actualType = htmlType || type;
     const T = useT();
     const [hover, setHover] = useState(false);
     // ── Base ──────────────────────────────────────────────
@@ -64,6 +65,21 @@ export function Button({ children, variant = 'primary', size = 'default', disabl
                     color: hover && !disabled ? T.textPrimary : T.textSecondary,
                 });
                 break;
+            case 'link':
+                Object.assign(base, {
+                    background: 'transparent',
+                    border: '1px solid transparent',
+                    color: hover && !disabled ? '#9494ff' : T.accent,
+                    padding: '0 4px',
+                });
+                break;
+            case 'danger':
+                Object.assign(base, {
+                    background: hover && !disabled ? 'rgba(255,92,92,0.2)' : 'rgba(255,92,92,0.12)',
+                    border: '1px solid rgba(255,92,92,0.3)',
+                    color: '#ff5c5c',
+                });
+                break;
             default:
                 break;
         }
@@ -102,10 +118,17 @@ export function Button({ children, variant = 'primary', size = 'default', disabl
                     background: 'rgba(255,255,255,0.035)', border: `1px solid ${T.borderSubtle}`, color: T.textSecondary,
                 });
                 break;
+            case 'link':
+                Object.assign(base, {
+                    background: 'transparent', border: '1px solid transparent', color: T.accent, padding: '0 4px',
+                });
+                break;
             default:
                 break;
         }
     }
-    return (React.createElement("button", { type: type, disabled: disabled, onClick: onClick, title: title, className: className, onMouseEnter: () => setHover(true), onMouseLeave: () => setHover(false), style: { ...base, ...style } }, children));
+    return (React.createElement("button", { type: actualType, disabled: disabled, onClick: onClick, title: title, className: className, onMouseEnter: () => setHover(true), onMouseLeave: () => setHover(false), style: { ...base, ...style } },
+        icon && React.createElement("span", { style: { display: 'inline-flex', alignItems: 'center' } }, icon),
+        children));
 }
 //# sourceMappingURL=Button.js.map

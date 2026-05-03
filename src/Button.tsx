@@ -4,7 +4,7 @@
 import React, { type CSSProperties, type ReactNode, useState } from 'react'
 import { useT } from './context'
 
-export type ButtonVariant = 'primary' | 'ghost' | 'icon' | 'danger' | 'success' | 'accent' | 'neutral'
+export type ButtonVariant = 'primary' | 'ghost' | 'icon' | 'link' | 'danger' | 'success' | 'accent' | 'neutral'
 export type ButtonSize = 'default' | 'sm'
 
 export interface ButtonProps {
@@ -15,8 +15,11 @@ export interface ButtonProps {
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
   style?: CSSProperties
   type?: 'button' | 'submit' | 'reset'
+  /** Alias for type (antd compat) */
+  htmlType?: 'button' | 'submit' | 'reset'
   title?: string
   className?: string
+  icon?: ReactNode
 }
 
 export function Button({
@@ -27,9 +30,12 @@ export function Button({
   onClick,
   style = {},
   type = 'button',
+  htmlType,
   title,
   className,
+  icon,
 }: ButtonProps) {
+  const actualType = htmlType || type;
   const T = useT()
   const [hover, setHover] = useState(false)
 
@@ -91,6 +97,21 @@ export function Button({
           color: hover && !disabled ? T.textPrimary : T.textSecondary,
         })
         break
+      case 'link':
+        Object.assign(base, {
+          background: 'transparent',
+          border: '1px solid transparent',
+          color: hover && !disabled ? '#9494ff' : T.accent,
+          padding: '0 4px',
+        })
+        break
+      case 'danger':
+        Object.assign(base, {
+          background: hover && !disabled ? 'rgba(255,92,92,0.2)' : 'rgba(255,92,92,0.12)',
+          border: '1px solid rgba(255,92,92,0.3)',
+          color: '#ff5c5c',
+        })
+        break
       default:
         break
     }
@@ -130,6 +151,11 @@ export function Button({
           background: 'rgba(255,255,255,0.035)', border: `1px solid ${T.borderSubtle}`, color: T.textSecondary,
         })
         break
+      case 'link':
+        Object.assign(base, {
+          background: 'transparent', border: '1px solid transparent', color: T.accent, padding: '0 4px',
+        })
+        break
       default:
         break
     }
@@ -137,7 +163,7 @@ export function Button({
 
   return (
     <button
-      type={type}
+      type={actualType}
       disabled={disabled}
       onClick={onClick}
       title={title}
@@ -146,6 +172,7 @@ export function Button({
       onMouseLeave={() => setHover(false)}
       style={{ ...base, ...style }}
     >
+      {icon && <span style={{ display: 'inline-flex', alignItems: 'center' }}>{icon}</span>}
       {children}
     </button>
   )
