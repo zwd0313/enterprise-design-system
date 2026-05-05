@@ -390,9 +390,8 @@ export function Sidebar({ navGroups }: {
   const { tokens: T } = useContext(DesignSystemContext)
 
   function isActive(path: string) {
-    if (path === '/dashboard') return pathname === '/dashboard'
-    if (path === '/tasks') return pathname === '/tasks' || pathname.startsWith('/tasks/') || pathname === '/workitem/my' || pathname === '/workitem/tasks'
-    if (path === '/projects') return pathname === '/projects' || pathname.startsWith('/projects/') || pathname === '/workitem/projects'
+    if (path === '/projects') return pathname === '/projects' || (pathname.startsWith('/projects/') && !pathname.startsWith('/projects/members'))
+    if (path === '/projects/members') return pathname === '/projects/members' || pathname.startsWith('/projects/members/')
     return pathname === path || pathname.startsWith(`${path}/`)
   }
 

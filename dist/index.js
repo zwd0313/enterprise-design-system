@@ -281,12 +281,10 @@ export function Sidebar({ navGroups }) {
     const { pathname } = useLocation();
     const { tokens: T } = useContext(DesignSystemContext);
     function isActive(path) {
-        if (path === '/dashboard')
-            return pathname === '/dashboard';
-        if (path === '/tasks')
-            return pathname === '/tasks' || pathname.startsWith('/tasks/') || pathname === '/workitem/my' || pathname === '/workitem/tasks';
         if (path === '/projects')
-            return pathname === '/projects' || pathname.startsWith('/projects/') || pathname === '/workitem/projects';
+            return pathname === '/projects' || (pathname.startsWith('/projects/') && !pathname.startsWith('/projects/members'));
+        if (path === '/projects/members')
+            return pathname === '/projects/members' || pathname.startsWith('/projects/members/');
         return pathname === path || pathname.startsWith(`${path}/`);
     }
     return (React.createElement("aside", { style: { width: 232, flexShrink: 0, height: '100vh', display: 'flex', flexDirection: 'column', background: T.sidebarBg, backdropFilter: 'blur(20px)', borderRight: `1px solid ${T.borderSubtle}`, position: 'sticky', top: 0 } },
@@ -294,7 +292,7 @@ export function Sidebar({ navGroups }) {
             React.createElement("span", { style: { width: 30, height: 30, borderRadius: 9, flexShrink: 0, background: `linear-gradient(145deg,${T.accentHover},${T.accent})`, display: 'grid', placeItems: 'center', color: '#fff', fontSize: 11, fontWeight: 700, boxShadow: '0 6px 18px rgba(94,106,210,0.35)' } }, "EP"),
             React.createElement("span", null,
                 React.createElement("span", { style: { display: 'block', fontSize: 13, fontWeight: 600, color: T.textPrimary, letterSpacing: '-0.01em' } }, "Enterprise Portal"),
-                React.createElement("span", { style: { display: 'block', fontSize: 10.5, color: T.textTertiary, marginTop: 1 } }, "\u4E1A\u52A1\u5DE5\u4F5C\u53F0 \u00B7 V1"))),
+                React.createElement("span", { style: { display: 'block', fontSize: 10.5, color: T.textTertiary, marginTop: 1 } }, "\u4E1A\u52A1\u5DE5\u4F5C\u53F0"))),
         React.createElement("nav", { style: { flex: 1, overflowY: 'auto', padding: '10px 8px' } }, navGroups.map((group) => (React.createElement("div", { key: group.title, style: { marginBottom: 12 } },
             React.createElement("div", { style: { padding: '4px 8px 3px', fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: T.textTertiary } }, group.title),
             group.items.map((item) => {
