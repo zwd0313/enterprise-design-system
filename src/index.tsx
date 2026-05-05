@@ -403,7 +403,7 @@ export function Sidebar({ navGroups }: {
         <span style={{ width: 30, height: 30, borderRadius: 9, flexShrink: 0, background: `linear-gradient(145deg,${T.accentHover},${T.accent})`, display: 'grid', placeItems: 'center', color: '#fff', fontSize: 11, fontWeight: 700, boxShadow: '0 6px 18px rgba(94,106,210,0.35)' }}>EP</span>
         <span>
           <span style={{ display: 'block', fontSize: 13, fontWeight: 600, color: T.textPrimary, letterSpacing: '-0.01em' }}>Enterprise Portal</span>
-          <span style={{ display: 'block', fontSize: 10.5, color: T.textTertiary, marginTop: 1 }}>业务工作台 · V1</span>
+          <span style={{ display: 'block', fontSize: 10.5, color: T.textTertiary, marginTop: 1 }}>业务工作台</span>
         </span>
       </Link>
 
