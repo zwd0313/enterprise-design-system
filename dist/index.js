@@ -1,5 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
-import React, { useState, useMemo, useCallback, useContext } from 'react';
+import React, { useState, useEffect, useMemo, useCallback, useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 // ── Tokens ────────────────────────────────────────────────────────
 import { darkTokens, lightTokens } from './tokens';
@@ -12,6 +12,10 @@ import { DesignSystemContext, useT } from './context';
 // ── DesignSystemProvider ──────────────────────────────────────────
 export function DesignSystemProvider({ children, initialDark = true }) {
     const [isDark, setIsDark] = useState(initialDark);
+    // 同步外部 theme 变更（ThemeProvider 切换时更新内部状态）
+    useEffect(() => {
+        setIsDark(initialDark);
+    }, [initialDark]);
     const toggleTheme = useCallback(() => setIsDark(d => !d), []);
     const tokens = useMemo(() => isDark ? darkTokens : lightTokens, [isDark]);
     return (React.createElement(DesignSystemContext.Provider, { value: { tokens, isDark, toggleTheme } }, children));
