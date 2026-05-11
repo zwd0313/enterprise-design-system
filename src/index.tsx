@@ -475,8 +475,8 @@ export function TopBar({ isMobile = false, userName, userInitial, onSearchOpen, 
 
         {/* User dropdown — Linear style */}
         <div style={{ position: 'relative' }}>
-          <button onClick={() => setShowUserMenu(!showUserMenu)} style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '2px 6px 2px 2px', borderRadius: 8, border: 'none', background: 'rgba(255,255,255,0.04)', color: T.textPrimary, fontSize: 13, cursor: 'pointer', transition: 'background 0.15s' }}>
-            <span style={{ width: 26, height: 26, borderRadius: '50%', background: T.accent, display: 'grid', placeItems: 'center', fontSize: 11, fontWeight: 700, color: '#fff', lineHeight: '26px', flexShrink: 0 }}>{userInitial}</span>
+          <button onClick={() => setShowUserMenu(!showUserMenu)} style={{ display: 'flex', alignItems: 'center', gap: 5, height: 26, padding: '0 5px 0 2px', borderRadius: 7, border: 'none', background: 'rgba(255,255,255,0.04)', color: T.textPrimary, fontSize: 12.5, cursor: 'pointer', transition: 'background 0.15s' }}>
+            <span style={{ width: 24, height: 24, borderRadius: '50%', background: T.accent, display: 'grid', placeItems: 'center', fontSize: 10.5, fontWeight: 700, color: '#fff', lineHeight: '24px', flexShrink: 0 }}>{userInitial}</span>
             {!isMobile && <span style={{ fontWeight: 500 }}>{userName}</span>}
             <Icon name="chevronDown" size={11} style={{ color: T.textTertiary, marginLeft: 2 }} />
           </button>
