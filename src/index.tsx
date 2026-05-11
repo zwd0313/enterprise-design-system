@@ -1,6 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
 import React, { useState, useEffect, useMemo, useCallback, useContext, type CSSProperties, type ReactNode } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import { Avatar } from 'antd'
 
 // ── Tokens ────────────────────────────────────────────────────────
 import { darkTokens, lightTokens, type ThemeTokens } from './tokens'
@@ -451,9 +452,9 @@ export function TopBar({ isMobile = false, userName, userInitial, onSearchOpen, 
   const [showUserMenu, setShowUserMenu] = useState(false)
 
   return (
-    <header style={{ position: 'sticky', top: 0, zIndex: 40, height: 52, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 22px', background: T.topbarBg, backdropFilter: 'blur(18px)', borderBottom: `1px solid ${T.borderSubtle}`, flexShrink: 0 }}>
+    <header style={{ position: 'sticky', top: 0, zIndex: 40, height: 44, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 22px', background: T.topbarBg, backdropFilter: 'blur(18px)', borderBottom: `1px solid ${T.borderSubtle}`, flexShrink: 0 }}>
       {/* Search */}
-      <button onClick={onSearchOpen} style={{ display: 'flex', alignItems: 'center', gap: 8, minWidth: isMobile ? 120 : 260, height: 32, padding: '0 10px', border: `1px solid ${T.borderSubtle}`, borderRadius: 8, background: 'rgba(255,255,255,0.035)', color: T.textTertiary, fontSize: 13, cursor: 'pointer' }}>
+      <button onClick={onSearchOpen} style={{ display: 'flex', alignItems: 'center', gap: 8, minWidth: isMobile ? 120 : 260, height: 28, padding: '0 10px', border: `1px solid ${T.borderSubtle}`, borderRadius: 8, background: 'rgba(255,255,255,0.035)', color: T.textTertiary, fontSize: 13, cursor: 'pointer' }}>
         <Icon name="search" size={16} />
         <span>{isMobile ? '搜索' : '搜索工作项、项目、成员…'}</span>
         {!isMobile && <kbd style={{ marginLeft: 'auto', padding: '1px 6px', borderRadius: 5, background: 'rgba(255,255,255,0.08)', color: T.textTertiary, fontSize: 10, border: `1px solid ${T.borderSubtle}`, fontFamily: 'ui-monospace,monospace' }}>⌘K</kbd>}
@@ -464,12 +465,12 @@ export function TopBar({ isMobile = false, userName, userInitial, onSearchOpen, 
         {/* Theme toggle */}
         {onToggleTheme && (
           <button onClick={onToggleTheme}
-            style={{ width: 32, height: 32, display: 'grid', placeItems: 'center', border: `1px solid ${T.borderSubtle}`, borderRadius: 8, background: 'rgba(255,255,255,0.04)', color: T.textSecondary, cursor: 'pointer', transition: 'background 0.15s, color 0.15s' }}>
+            style={{ width: 28, height: 28, display: 'grid', placeItems: 'center', border: `1px solid ${T.borderSubtle}`, borderRadius: 8, background: 'rgba(255,255,255,0.04)', color: T.textSecondary, cursor: 'pointer', transition: 'background 0.15s, color 0.15s' }}>
             <Icon name={isDark ? 'moon' : 'sun'} size={14} />
           </button>
         )}
 
-        <Link to="/notifications" style={{ width: 32, height: 32, display: 'grid', placeItems: 'center', border: `1px solid ${T.borderSubtle}`, borderRadius: 8, background: 'rgba(255,255,255,0.04)', color: T.textSecondary, cursor: 'pointer', position: 'relative', textDecoration: 'none' }}>
+        <Link to="/notifications" style={{ width: 28, height: 28, display: 'grid', placeItems: 'center', border: `1px solid ${T.borderSubtle}`, borderRadius: 8, background: 'rgba(255,255,255,0.04)', color: T.textSecondary, cursor: 'pointer', position: 'relative', textDecoration: 'none' }}>
           <Icon name="bell" size={14} />
           <span style={{ position: 'absolute', top: 5, right: 6, width: 6, height: 6, borderRadius: '50%', background: T.danger, boxShadow: `0 0 0 1.5px ${T.bgBase}` }} />
         </Link>
@@ -477,7 +478,7 @@ export function TopBar({ isMobile = false, userName, userInitial, onSearchOpen, 
         {/* User dropdown — Linear style */}
         <div style={{ position: 'relative' }}>
           <button onClick={() => setShowUserMenu(!showUserMenu)} style={{ display: 'flex', alignItems: 'center', gap: 7, padding: '3px 8px 3px 4px', borderRadius: 999, border: `1px solid ${T.borderSubtle}`, background: 'transparent', color: T.textPrimary, fontSize: 13, cursor: 'pointer' }}>
-            <span style={{ width: 26, height: 26, borderRadius: '50%', background: `${T.accent}33`, border: `1px solid ${T.accent}66`, display: 'grid', placeItems: 'center', fontSize: 12, fontWeight: 700, color: T.accent, fontFamily: 'var(--eb-font-sans, "Inter", sans-serif)', letterSpacing: '0.02em' }}>{userInitial}</span>
+            <Avatar size={26} style={{ background: T.accent, fontSize: 12, fontWeight: 700 }}>{userInitial}</Avatar>
             {!isMobile && <span style={{ fontWeight: 500 }}>{userName}</span>}
             <Icon name="chevronDown" size={11} style={{ color: T.textTertiary, marginLeft: 2 }} />
           </button>

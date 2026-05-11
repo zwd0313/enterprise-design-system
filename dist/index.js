@@ -1,6 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
 import React, { useState, useEffect, useMemo, useCallback, useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { Avatar } from 'antd';
 // ── Tokens ────────────────────────────────────────────────────────
 import { darkTokens, lightTokens } from './tokens';
 export { darkTokens, lightTokens };
@@ -322,20 +323,20 @@ export function Sidebar({ navGroups }) {
 export function TopBar({ isMobile = false, userName, userInitial, onSearchOpen, onLogout, isDark, onToggleTheme }) {
     const T = useT();
     const [showUserMenu, setShowUserMenu] = useState(false);
-    return (React.createElement("header", { style: { position: 'sticky', top: 0, zIndex: 40, height: 52, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 22px', background: T.topbarBg, backdropFilter: 'blur(18px)', borderBottom: `1px solid ${T.borderSubtle}`, flexShrink: 0 } },
-        React.createElement("button", { onClick: onSearchOpen, style: { display: 'flex', alignItems: 'center', gap: 8, minWidth: isMobile ? 120 : 260, height: 32, padding: '0 10px', border: `1px solid ${T.borderSubtle}`, borderRadius: 8, background: 'rgba(255,255,255,0.035)', color: T.textTertiary, fontSize: 13, cursor: 'pointer' } },
+    return (React.createElement("header", { style: { position: 'sticky', top: 0, zIndex: 40, height: 44, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 22px', background: T.topbarBg, backdropFilter: 'blur(18px)', borderBottom: `1px solid ${T.borderSubtle}`, flexShrink: 0 } },
+        React.createElement("button", { onClick: onSearchOpen, style: { display: 'flex', alignItems: 'center', gap: 8, minWidth: isMobile ? 120 : 260, height: 28, padding: '0 10px', border: `1px solid ${T.borderSubtle}`, borderRadius: 8, background: 'rgba(255,255,255,0.035)', color: T.textTertiary, fontSize: 13, cursor: 'pointer' } },
             React.createElement(Icon, { name: "search", size: 16 }),
             React.createElement("span", null, isMobile ? '搜索' : '搜索工作项、项目、成员…'),
             !isMobile && React.createElement("kbd", { style: { marginLeft: 'auto', padding: '1px 6px', borderRadius: 5, background: 'rgba(255,255,255,0.08)', color: T.textTertiary, fontSize: 10, border: `1px solid ${T.borderSubtle}`, fontFamily: 'ui-monospace,monospace' } }, "\u2318K")),
         React.createElement("div", { style: { display: 'flex', alignItems: 'center', gap: 7, position: 'relative' } },
-            onToggleTheme && (React.createElement("button", { onClick: onToggleTheme, style: { width: 32, height: 32, display: 'grid', placeItems: 'center', border: `1px solid ${T.borderSubtle}`, borderRadius: 8, background: 'rgba(255,255,255,0.04)', color: T.textSecondary, cursor: 'pointer', transition: 'background 0.15s, color 0.15s' } },
+            onToggleTheme && (React.createElement("button", { onClick: onToggleTheme, style: { width: 28, height: 28, display: 'grid', placeItems: 'center', border: `1px solid ${T.borderSubtle}`, borderRadius: 8, background: 'rgba(255,255,255,0.04)', color: T.textSecondary, cursor: 'pointer', transition: 'background 0.15s, color 0.15s' } },
                 React.createElement(Icon, { name: isDark ? 'moon' : 'sun', size: 14 }))),
-            React.createElement(Link, { to: "/notifications", style: { width: 32, height: 32, display: 'grid', placeItems: 'center', border: `1px solid ${T.borderSubtle}`, borderRadius: 8, background: 'rgba(255,255,255,0.04)', color: T.textSecondary, cursor: 'pointer', position: 'relative', textDecoration: 'none' } },
+            React.createElement(Link, { to: "/notifications", style: { width: 28, height: 28, display: 'grid', placeItems: 'center', border: `1px solid ${T.borderSubtle}`, borderRadius: 8, background: 'rgba(255,255,255,0.04)', color: T.textSecondary, cursor: 'pointer', position: 'relative', textDecoration: 'none' } },
                 React.createElement(Icon, { name: "bell", size: 14 }),
                 React.createElement("span", { style: { position: 'absolute', top: 5, right: 6, width: 6, height: 6, borderRadius: '50%', background: T.danger, boxShadow: `0 0 0 1.5px ${T.bgBase}` } })),
             React.createElement("div", { style: { position: 'relative' } },
                 React.createElement("button", { onClick: () => setShowUserMenu(!showUserMenu), style: { display: 'flex', alignItems: 'center', gap: 7, padding: '3px 8px 3px 4px', borderRadius: 999, border: `1px solid ${T.borderSubtle}`, background: 'transparent', color: T.textPrimary, fontSize: 13, cursor: 'pointer' } },
-                    React.createElement("span", { style: { width: 26, height: 26, borderRadius: '50%', background: `${T.accent}33`, border: `1px solid ${T.accent}66`, display: 'grid', placeItems: 'center', fontSize: 12, fontWeight: 700, color: T.accent, fontFamily: 'var(--eb-font-sans, "Inter", sans-serif)', letterSpacing: '0.02em' } }, userInitial),
+                    React.createElement(Avatar, { size: 26, style: { background: T.accent, fontSize: 12, fontWeight: 700 } }, userInitial),
                     !isMobile && React.createElement("span", { style: { fontWeight: 500 } }, userName),
                     React.createElement(Icon, { name: "chevronDown", size: 11, style: { color: T.textTertiary, marginLeft: 2 } })),
                 showUserMenu && (React.createElement(React.Fragment, null,
