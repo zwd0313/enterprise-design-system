@@ -31,7 +31,7 @@ export declare const T: {
     readonly cardBg: "linear-gradient(180deg,rgba(255,255,255,0.038),rgba(255,255,255,0.024))";
     readonly pageBg: "radial-gradient(circle at 18% 0%, rgba(94,106,210,0.12), transparent 28rem),\n              radial-gradient(circle at 85% 12%, rgba(113,112,255,0.07), transparent 28rem), #08090a";
 };
-export type IconName = 'dashboard' | 'check' | 'bell' | 'folder' | 'user' | 'logout' | 'search' | 'chart' | 'pie' | 'team' | 'plus' | 'close' | 'project' | 'settings' | 'sun' | 'moon' | 'arrowR' | 'edit' | 'inbox' | 'exclamationCircle' | 'arrowRight' | 'task' | 'clock' | 'calendar' | 'chevronDown';
+export type IconName = 'dashboard' | 'check' | 'bell' | 'folder' | 'user' | 'logout' | 'search' | 'chart' | 'pie' | 'team' | 'plus' | 'close' | 'project' | 'settings' | 'sun' | 'moon' | 'arrowR' | 'edit' | 'inbox' | 'exclamationCircle' | 'arrowRight' | 'task' | 'clock' | 'calendar' | 'chevronDown' | 'list' | 'kanban';
 export declare function Icon({ name, size, color, style }: {
     name: IconName;
     size?: number;
