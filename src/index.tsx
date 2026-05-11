@@ -485,7 +485,7 @@ export function TopBar({ isMobile = false, userName, userInitial, onSearchOpen, 
           {showUserMenu && (
             <>
               <div onClick={() => setShowUserMenu(false)} style={{ position: 'fixed', inset: 0, zIndex: 39 }} />
-              <div style={{ position: 'absolute', top: 40, right: 0, zIndex: 41, width: 200, borderRadius: 10, background: T.bgElevated, border: `1px solid ${T.borderSubtle}`, boxShadow: '0 8px 24px rgba(0,0,0,0.24)', overflow: 'hidden' }}>
+              <div style={{ position: 'absolute', top: 'calc(100% + 4px)', right: 0, zIndex: 41, minWidth: 180, borderRadius: 10, background: T.bgElevated, border: `1px solid ${T.borderSubtle}`, boxShadow: '0 8px 24px rgba(0,0,0,0.24)', overflow: 'hidden' }}>
                 <nav style={{ padding: '4px' }}>
                   <Link to="/profile" onClick={() => setShowUserMenu(false)} style={{ display: 'flex', alignItems: 'center', gap: 9, width: '100%', padding: '7px 10px', borderRadius: 7, color: T.textSecondary, fontSize: 14, fontWeight: 500, lineHeight: '20px', cursor: 'pointer', textDecoration: 'none' }}>
                     <Icon name="user" size={13} />
