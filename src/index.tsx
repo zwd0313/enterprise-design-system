@@ -1,8 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 import React, { useState, useEffect, useMemo, useCallback, useContext, type CSSProperties, type ReactNode } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { Avatar } from 'antd'
-
 // ── Tokens ────────────────────────────────────────────────────────
 import { darkTokens, lightTokens, type ThemeTokens } from './tokens'
 
@@ -478,7 +476,7 @@ export function TopBar({ isMobile = false, userName, userInitial, onSearchOpen, 
         {/* User dropdown — Linear style */}
         <div style={{ position: 'relative' }}>
           <button onClick={() => setShowUserMenu(!showUserMenu)} style={{ display: 'flex', alignItems: 'center', gap: 7, padding: '3px 8px 3px 4px', borderRadius: 999, border: `1px solid ${T.borderSubtle}`, background: 'transparent', color: T.textPrimary, fontSize: 13, cursor: 'pointer' }}>
-            <Avatar size={26} style={{ background: T.accent, fontSize: 12, fontWeight: 700 }}>{userInitial}</Avatar>
+            <span style={{ width: 26, height: 26, borderRadius: '50%', background: T.accent, display: 'grid', placeItems: 'center', fontSize: 12, fontWeight: 700, color: '#fff', flexShrink: 0 }}>{userInitial}</span>
             {!isMobile && <span style={{ fontWeight: 500 }}>{userName}</span>}
             <Icon name="chevronDown" size={11} style={{ color: T.textTertiary, marginLeft: 2 }} />
           </button>

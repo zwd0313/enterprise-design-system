@@ -1,7 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 import React, { useState, useEffect, useMemo, useCallback, useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Avatar } from 'antd';
 // ── Tokens ────────────────────────────────────────────────────────
 import { darkTokens, lightTokens } from './tokens';
 export { darkTokens, lightTokens };
@@ -336,7 +335,7 @@ export function TopBar({ isMobile = false, userName, userInitial, onSearchOpen, 
                 React.createElement("span", { style: { position: 'absolute', top: 5, right: 6, width: 6, height: 6, borderRadius: '50%', background: T.danger, boxShadow: `0 0 0 1.5px ${T.bgBase}` } })),
             React.createElement("div", { style: { position: 'relative' } },
                 React.createElement("button", { onClick: () => setShowUserMenu(!showUserMenu), style: { display: 'flex', alignItems: 'center', gap: 7, padding: '3px 8px 3px 4px', borderRadius: 999, border: `1px solid ${T.borderSubtle}`, background: 'transparent', color: T.textPrimary, fontSize: 13, cursor: 'pointer' } },
-                    React.createElement(Avatar, { size: 26, style: { background: T.accent, fontSize: 12, fontWeight: 700 } }, userInitial),
+                    React.createElement("span", { style: { width: 26, height: 26, borderRadius: '50%', background: T.accent, display: 'grid', placeItems: 'center', fontSize: 12, fontWeight: 700, color: '#fff', flexShrink: 0 } }, userInitial),
                     !isMobile && React.createElement("span", { style: { fontWeight: 500 } }, userName),
                     React.createElement(Icon, { name: "chevronDown", size: 11, style: { color: T.textTertiary, marginLeft: 2 } })),
                 showUserMenu && (React.createElement(React.Fragment, null,

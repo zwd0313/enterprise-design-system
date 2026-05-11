@@ -19,8 +19,7 @@
     "dev": "tsc --watch"
   },
   "peerDependencies": {
-    "antd": "^6.3.7",
-    "react": "^19.0.0",
+"react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.0.0"
   },
