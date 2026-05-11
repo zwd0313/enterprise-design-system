@@ -476,7 +476,7 @@ export function TopBar({ isMobile = false, userName, userInitial, onSearchOpen, 
         {/* User dropdown — Linear style */}
         <div style={{ position: 'relative' }}>
           <button onClick={() => setShowUserMenu(!showUserMenu)} style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '2px 6px 2px 2px', borderRadius: 8, border: 'none', background: 'rgba(255,255,255,0.04)', color: T.textPrimary, fontSize: 13, cursor: 'pointer', transition: 'background 0.15s' }}>
-            <span style={{ width: 26, height: 26, borderRadius: '50%', background: T.accent, display: 'grid', placeItems: 'center', fontSize: 12, fontWeight: 700, color: '#fff', flexShrink: 0 }}>{userInitial}</span>
+            <span style={{ width: 26, height: 26, borderRadius: '50%', background: T.accent, display: 'grid', placeItems: 'center', fontSize: 11, fontWeight: 700, color: '#fff', lineHeight: '26px', flexShrink: 0 }}>{userInitial}</span>
             {!isMobile && <span style={{ fontWeight: 500 }}>{userName}</span>}
             <Icon name="chevronDown" size={11} style={{ color: T.textTertiary, marginLeft: 2 }} />
           </button>
@@ -486,12 +486,12 @@ export function TopBar({ isMobile = false, userName, userInitial, onSearchOpen, 
             <>
               <div onClick={() => setShowUserMenu(false)} style={{ position: 'fixed', inset: 0, zIndex: 39 }} />
               <div style={{ position: 'absolute', top: 40, right: 0, zIndex: 41, width: 200, borderRadius: 10, background: T.bgElevated, border: `1px solid ${T.borderSubtle}`, boxShadow: '0 8px 24px rgba(0,0,0,0.24)', overflow: 'hidden' }}>
-                <nav style={{ padding: '6px 6px' }}>
-                  <Link to="/profile" onClick={() => setShowUserMenu(false)} style={{ display: 'flex', alignItems: 'center', gap: 9, width: '100%', padding: '8px 10px', borderRadius: 7, color: T.textSecondary, fontSize: 14, fontWeight: 450, cursor: 'pointer', textDecoration: 'none', marginBottom: 2 }}>
+                <nav style={{ padding: '4px' }}>
+                  <Link to="/profile" onClick={() => setShowUserMenu(false)} style={{ display: 'flex', alignItems: 'center', gap: 9, width: '100%', padding: '7px 10px', borderRadius: 7, color: T.textSecondary, fontSize: 14, fontWeight: 500, lineHeight: '20px', cursor: 'pointer', textDecoration: 'none' }}>
                     <Icon name="user" size={13} />
                     <span>个人中心</span>
                   </Link>
-                  <button onClick={() => { setShowUserMenu(false); onLogout() }} style={{ display: 'flex', alignItems: 'center', gap: 9, width: '100%', padding: '8px 10px', borderRadius: 7, border: 'none', background: 'transparent', color: T.danger, fontSize: 14, fontWeight: 450, cursor: 'pointer', textAlign: 'left' }}>
+                  <button onClick={() => { setShowUserMenu(false); onLogout() }} style={{ display: 'flex', alignItems: 'center', gap: 9, width: '100%', padding: '7px 10px', borderRadius: 7, border: 'none', background: 'transparent', color: T.danger, fontSize: 14, fontWeight: 500, lineHeight: '20px', cursor: 'pointer', textAlign: 'left' }}>
                     <Icon name="logout" size={13} />
                     <span>退出登录</span>
                   </button>
