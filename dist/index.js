@@ -292,10 +292,14 @@ export function AvatarStack({ names, max = 4 }) {
             rest))));
 }
 export const surfaceBg = 'rgba(255,255,255,0.03)';
-export function Sidebar({ navGroups }) {
+export function Sidebar({ navGroups, activePath: externalActivePath }) {
     const { pathname } = useLocation();
     const { tokens: T } = useContext(DesignSystemContext);
     function isActive(path) {
+        // 外部 active 判断优先
+        if (externalActivePath)
+            return externalActivePath(path);
+        // 默认逻辑：pathname 匹配
         if (path === '/projects')
             return pathname === '/projects' || (pathname.startsWith('/projects/') && !pathname.startsWith('/projects/members'));
         if (path === '/projects/members')

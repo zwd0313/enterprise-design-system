@@ -130,8 +130,10 @@ export interface NavGroup {
     title: string;
     items: NavItem[];
 }
-export declare function Sidebar({ navGroups }: {
+export declare function Sidebar({ navGroups, activePath: externalActivePath }: {
     navGroups: NavGroup[];
+    /** 可选的外部 active 判断函数，支持 query-aware 匹配。未提供则使用默认 pathname 匹配 */
+    activePath?: (path: string) => boolean;
 }): React.JSX.Element;
 export declare function TopBar({ isMobile, userName, userInitial, onSearchOpen, onLogout, isDark, onToggleTheme }: {
     isMobile?: boolean;

@@ -390,13 +390,18 @@ export const surfaceBg = 'rgba(255,255,255,0.03)'
 export interface NavItem { label: string; icon: IconName; path: string }
 export interface NavGroup { title: string; items: NavItem[] }
 
-export function Sidebar({ navGroups }: {
+export function Sidebar({ navGroups, activePath: externalActivePath }: {
   navGroups: NavGroup[]
+  /** 可选的外部 active 判断函数，支持 query-aware 匹配。未提供则使用默认 pathname 匹配 */
+  activePath?: (path: string) => boolean
 }) {
   const { pathname } = useLocation()
   const { tokens: T } = useContext(DesignSystemContext)
 
   function isActive(path: string) {
+    // 外部 active 判断优先
+    if (externalActivePath) return externalActivePath(path)
+    // 默认逻辑：pathname 匹配
     if (path === '/projects') return pathname === '/projects' || (pathname.startsWith('/projects/') && !pathname.startsWith('/projects/members'))
     if (path === '/projects/members') return pathname === '/projects/members' || pathname.startsWith('/projects/members/')
     return pathname === path || pathname.startsWith(`${path}/`)
